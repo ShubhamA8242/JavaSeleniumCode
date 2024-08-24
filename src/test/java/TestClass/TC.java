@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-//import java.util.logging.FileHandler;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +17,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import POM.POM1;
 import POM.POM2;
 import POM.POM3;
@@ -32,12 +29,11 @@ import POM.POM9;
 import POM.POM91;
 import net.bytebuddy.utility.RandomString;
 
+
+
+
 public class TC 
 {
-	
-	
-
-	
 WebDriver driver;
 POM1 p1;
 POM2 p2;
@@ -50,7 +46,6 @@ POM8 p8;
 POM9 p9;
 POM91 p91;
 
-
 int tcid=4321;
 	
 public String getdata(String propname) throws IOException
@@ -62,13 +57,13 @@ public String getdata(String propname) throws IOException
 	prop.load(fis);
 	
 	String info=prop.getProperty(propname);
-	
 	return info;
 }
+
 @BeforeClass
 public void openapp()
 {
- driver=new ChromeDriver();
+	driver=new ChromeDriver();
 
 	
 	  p1=new POM1(driver);
@@ -80,22 +75,18 @@ public void openapp()
 	  p7=new POM7(driver);
 	  p8=new POM8(driver);
 	  p9=new POM9(driver);
-	 p91=new POM91(driver);
+	  p91=new POM91(driver);
 }
+
 
 @BeforeMethod
 public void openbrowser() throws InterruptedException
 {
 	driver.get("https://accounts.google.com/signup");
-
-	//driver.findElement(By.xpath("//div[@class='VfPpkd-RLmnJb']")).click();	
-	
 	
 	Thread.sleep(3000);
 	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	driver.manage().window().maximize();
-	
-
 }
 
 @Test
@@ -154,14 +145,12 @@ Thread.sleep(2000);
 
 String acttext=p91.verifygettext();
 
-//acttext.contains("Welcome");
-
 assertTrue(acttext.contains("Welcome"));
 	
 }
 
 @AfterMethod
-public void sdgf() throws IOException
+public void screenshot() throws IOException
 {
 	File source=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
